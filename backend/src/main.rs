@@ -1,6 +1,6 @@
-use std::env;
-use dotenv::dotenv;
 use actix_web::{App, HttpServer};
+use dotenv::dotenv;
+use std::env;
 
 mod routes;
 
@@ -12,7 +12,10 @@ async fn main() -> std::io::Result<()> {
     println!("Server is running on {}", port);
 
     HttpServer::new(move || {
-        App::new().service(routes::account::account)
+        App::new()
+            .service(routes::loan::loan)
+            .service(routes::account::account)
+            .service(routes::transaction::transaction)
     })
     .bind(format!("localhost:{}", port))?
     .run()
