@@ -1,0 +1,49 @@
+# Rust-specific ignores
+/target/                     # Compiled output
+**/*.rs.bk                   # Backup files from editors
+**/*.rlib                    # Rust library files
+
+# Cargo-related ignores
+Cargo.lock                   # If you prefer to manage versions manually
+/.cargo/                     # Cargo config directory
+.cargo-target/               # Cargo target directory (alternate path)
+
+# Node.js-related ignores (if you use package.json in root)
+node_modules/                # Node.js dependencies
+package-lock.json            # Lockfile for npm
+pnpm-lock.yaml               # Lockfile for pnpm (if used)
+
+# Build artifacts and logs
+*.log                        # Log files
+*.d                          # Dependency files
+*.o                          # Object files
+*.so                         # Shared library files
+*.a                          # Static library files
+*.dSYM/                      # macOS debug info
+*.out                        # Binary output
+*.tmp                        # Temporary files
+
+# IDE and editor-specific ignores
+.idea/                       # JetBrains IDE (IntelliJ, CLion, etc.)
+.vscode/                     # VS Code settings
+.DS_Store                    # macOS Finder metadata
+Thumbs.db                    # Windows Explorer thumbnail cache
+*.swp                        # Vim swap files
+*.sublime-project
+*.sublime-workspace
+
+# Environment variables
+.env                         # Environment variables
+
+# Tests and CI
+/tests-output/               # Test outputs
+/coverage/                   # Code coverage reports
+
+# System-specific ignores
+*.~lock                      # Temporary lock files
+*.bak                        # Backup files
+*.tmp                        # Temporary files
+
+# Custom directories
+/target/
+**/target/
