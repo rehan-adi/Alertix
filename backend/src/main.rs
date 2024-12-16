@@ -3,6 +3,7 @@ use dotenv::dotenv;
 use std::env;
 
 mod routes;
+mod schema;
 
 #[tokio::main]
 async fn main() -> std::io::Result<()> {
