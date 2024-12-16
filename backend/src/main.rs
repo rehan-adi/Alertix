@@ -4,6 +4,7 @@ use std::env;
 
 mod routes;
 mod schema;
+mod models;
 
 #[tokio::main]
 async fn main() -> std::io::Result<()> {
