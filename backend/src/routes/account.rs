@@ -1,9 +1,11 @@
+use crate::config::redis::redis_client;
 use crate::types::account::AccountData;
 use crate::{config::db::DbPool, models::event::Event, schema::events};
 use actix_web::{post, web, HttpResponse, Responder};
 use chrono::NaiveDateTime;
 use diesel::prelude::*;
 use log::error;
+use redis::AsyncCommands;
 use serde_json::json;
 use uuid::Uuid;
 
@@ -64,9 +66,25 @@ pub async fn account(pool: web::Data<DbPool>, data: web::Json<AccountData>) -> i
         .values(&new_event)
         .execute(conn)
     {
-        Ok(_) => HttpResponse::Ok().json(json!({
-            "message": "Data added to database"
-        })),
+        Ok(_) => {
+            let event =
+                serde_json::to_string(&new_event).expect("Failed to serialize event to JSON");
+            let mut redis_conn = redis_client().await;
+
+            if let Err(err) = redis_conn
+                .lpush::<&str, String, ()>("event_queue", event)
+                .await
+            {
+                error!("Failed to add event to Redis queue: {}", err);
+                return HttpResponse::InternalServerError().json(json!({
+                    "error": "Failed to add event to Redis queue"
+                }));
+            }
+
+            HttpResponse::Ok().json(json!({
+                "message": "Data added to database and Redis queue"
+            }))
+        }
         Err(e) => {
             error!("Failed to insert event: {}", e);
             HttpResponse::InternalServerError().json(json!({
