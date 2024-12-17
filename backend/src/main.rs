@@ -1,14 +1,18 @@
 use actix_web::{web, App, HttpServer};
 use dotenv::dotenv;
+use env_logger;
 use std::env;
 
 mod config;
 mod models;
 mod routes;
 mod schema;
+mod types;
 
 #[tokio::main]
 async fn main() -> std::io::Result<()> {
+    env_logger::init();
+
     dotenv().ok();
 
     let pool = config::db::db_connect();
