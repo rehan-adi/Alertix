@@ -1,5 +1,5 @@
 use crate::config::redis::redis_client;
-use crate::types::account::AccountData;
+use crate::types::types::AccountData;
 use crate::{config::db::DbPool, models::event::Event, schema::events};
 use actix_web::{post, web, HttpResponse, Responder};
 use chrono::NaiveDateTime;
