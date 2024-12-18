@@ -33,3 +33,18 @@ pub struct LoanData {
     pub message: String,
     pub created_at: String,
 }
+
+#[derive(Debug, Deserialize)]
+pub struct TransactionData {
+    pub event_id: String,
+    pub user_id: String,
+    pub event_type: EventType,
+    pub email: String,
+    pub phone: String,
+    pub transaction_id: String,
+    pub amount: String,
+    pub transaction_type: String,
+    pub balance: String,
+    pub message: String,
+    pub created_at: String,
+}
