@@ -1,5 +1,6 @@
 use crate::config::redis::redis_client;
-use crate::{config::db::DbPool, models::event::Event, schema::events, types::types::LoanData};
+use crate::types::types::LoanData;
+use crate::{db::db::DbPool, db::models::event::Event, db::schema::events};
 use actix_web::{post, web, HttpResponse, Responder};
 use chrono::NaiveDateTime;
 use diesel::prelude::*;

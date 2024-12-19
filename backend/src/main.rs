@@ -1,12 +1,11 @@
 use actix_web::{web, App, HttpServer};
+use db;
 use dotenv::dotenv;
 use env_logger;
 use std::env;
 
 mod config;
-mod models;
 mod routes;
-mod schema;
 mod types;
 
 #[tokio::main]
@@ -15,7 +14,7 @@ async fn main() -> std::io::Result<()> {
 
     dotenv().ok();
 
-    let pool = config::db::db_connect();
+    let pool = db::db::db_connect();
 
     let port = env::var("PORT").expect("Failed to get PORT");
     println!("Server is running on {}", port);

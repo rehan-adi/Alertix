@@ -4,6 +4,7 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+db = { path = "../db" }
 actix-web = "4.9.0"
 dotenv = "0.15.0"
 diesel = { version = "2.2.0", features = [

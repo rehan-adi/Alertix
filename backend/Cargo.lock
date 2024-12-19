@@ -324,6 +324,7 @@ version = "0.1.0"
 dependencies = [
  "actix-web",
  "chrono",
+ "db",
  "diesel",
  "dotenv",
  "env_logger",
@@ -556,6 +557,19 @@ dependencies = [
  "darling_core",
  "quote",
  "syn",
+]
+
+[[package]]
+name = "db"
+version = "0.1.0"
+dependencies = [
+ "chrono",
+ "diesel",
+ "dotenv",
+ "r2d2",
+ "serde",
+ "serde_json",
+ "uuid",
 ]
 
 [[package]]
