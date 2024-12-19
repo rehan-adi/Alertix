@@ -329,7 +329,6 @@ dependencies = [
  "dotenv",
  "env_logger",
  "log",
- "r2d2",
  "redis",
  "serde",
  "serde_json",
