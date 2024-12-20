@@ -35,6 +35,7 @@ pub async fn transaction(
     };
 
     let payload = json!({
+       "channel": format!("{:?}", data.channel).to_lowercase(),
        "email": &data.email,
        "phone": &data.phone,
        "transaction_id": &data.transaction_id,

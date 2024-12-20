@@ -36,6 +36,7 @@ pub async fn account(pool: web::Data<DbPool>, data: web::Json<AccountData>) -> i
 
     // Create the payload as a JSON object
     let payload = json!({
+        "channel": format!("{:?}", data.channel).to_lowercase(),
         "name": data.name,
         "email": data.email,
         "phone": data.phone,

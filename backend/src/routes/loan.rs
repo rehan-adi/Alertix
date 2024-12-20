@@ -32,6 +32,7 @@ pub async fn loan(pool: web::Data<DbPool>, data: web::Json<LoanData>) -> impl Re
     };
 
     let payload = json!({
+       "channel": format!("{:?}", data.channel).to_lowercase(),
        "email": &data.email,
        "phone": &data.phone,
        "loan_id": &data.loan_id,
