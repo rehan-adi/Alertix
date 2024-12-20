@@ -1,7 +1,8 @@
+use db;
+use worker::process_redis_queue;
+
 mod redis;
 mod worker;
-
-use worker::process_redis_queue;
 
 #[tokio::main]
 async fn main() {
