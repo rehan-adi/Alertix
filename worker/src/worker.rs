@@ -14,6 +14,7 @@ struct Event {
 
 #[derive(Deserialize, Debug)]
 struct LoanPayload {
+    channel: String,
     loan_id: String,
     loan_amount: String,
     status: String,
@@ -22,6 +23,7 @@ struct LoanPayload {
 
 #[derive(Deserialize, Debug)]
 struct AccountPayload {
+    channel: String,
     name: String,
     email: String,
     phone: String,
@@ -30,6 +32,7 @@ struct AccountPayload {
 
 #[derive(Deserialize, Debug)]
 struct TransactionPayload {
+    channel: String,
     transaction_id: String,
     amount: String,
     transaction_type: String,
@@ -63,7 +66,8 @@ pub async fn process_redis_queue() {
                                     serde_json::from_value::<LoanPayload>(event.payload)
                                 {
                                     println!(
-                                        "Processing loan event. Loan ID: {}, Amount: {}, Status: {}, Message: {}",
+                                        "Processing loan event. Channel: {}, Loan ID: {}, Amount: {}, Status: {}, Message: {}",
+                                        loan_payload.channel,
                                         loan_payload.loan_id,
                                         loan_payload.loan_amount,
                                         loan_payload.status,
@@ -79,7 +83,8 @@ pub async fn process_redis_queue() {
                                     serde_json::from_value::<TransactionPayload>(event.payload)
                                 {
                                     println!(
-                                        "Processing transaction event. Transaction ID: {}, Amount: {}, Type: {}, Balance: {}, Message: {}",
+                                        "Processing transaction event. Channel: {}, Transaction ID: {}, Amount: {}, Type: {}, Balance: {}, Message: {}",
+                                        transaction_payload.channel,
                                         transaction_payload.transaction_id,
                                         transaction_payload.amount,
                                         transaction_payload.transaction_type,
@@ -96,8 +101,9 @@ pub async fn process_redis_queue() {
                                     serde_json::from_value::<AccountPayload>(event.payload)
                                 {
                                     println!(
-                                        "Processing account event. Name: {}, Email: {}, Phone: {},
+                                        "Processing account event. Channel: {}, Name: {}, Email: {}, Phone: {},
                                         Message: {}",
+                                        account_payload.channel,
                                         account_payload.name,
                                         account_payload.email,
                                         account_payload.phone,
