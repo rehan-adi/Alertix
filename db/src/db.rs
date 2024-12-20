@@ -1,6 +1,6 @@
-use std::env;
+use diesel::r2d2::{self, ConnectionManager};
 use diesel::PgConnection;
-use diesel::r2d2::{self, ConnectionManager}; 
+use std::env;
 
 pub type DbPool = r2d2::Pool<ConnectionManager<PgConnection>>;
 
@@ -11,7 +11,6 @@ pub fn db_connect() -> DbPool {
     let pool = ConnectionManager::<PgConnection>::new(database_url);
 
     r2d2::Pool::builder()
-    .build(pool)
-    .expect("Failed to create connection pool")
-
+        .build(pool)
+        .expect("Failed to create connection pool")
 }

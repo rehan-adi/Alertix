@@ -564,7 +564,6 @@ version = "0.1.0"
 dependencies = [
  "chrono",
  "diesel",
- "dotenv",
  "r2d2",
  "serde",
  "serde_json",
